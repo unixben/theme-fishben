@@ -8,9 +8,8 @@
 # [Powerline-patched font](https://gist.github.com/1595572).
 
 ## Set this options in your config.fish (if you want to :])
-# set -g theme_display_user yes
-# set -g theme_hide_hostname yes
-# set -g theme_hide_hostname no
+# set -g theme_display_user no
+# set -g theme_display_hostname no
 # set -g default_user your_normal_user
 # set -g theme_short_hostname no
 
@@ -19,9 +18,6 @@
 set -g current_bg NONE
 set segment_separator \uE0B0
 set right_segment_separator \uE0B0
-# ===========================
-# Helper methods
-# ===========================
 
 set -g __fish_git_prompt_showdirtystate 'yes'
 set -g __fish_git_prompt_char_dirtystate '±'
@@ -120,11 +116,11 @@ end
 
 function get_hostname -d "Set current hostname to prompt variable $HOSTNAME_PROMPT if connected via SSH"
   set -g HOSTNAME_PROMPT ""
-  if [ "$theme_hide_hostname" = "no" -o \( "$theme_hide_hostname" != "yes" -a -n "$SSH_CLIENT" \) ]
-    if [ "$theme_short_hostname" = "no" ]
-      set -g HOSTNAME_PROMPT (hostname)
-    else
+  if [ "$theme_display_hostname" = "yes" -o \( "$theme_display_hostname" != "no" -a -n "$SSH_CLIENT" \) ]
+    if [ "$theme_short_hostname" = "yes" ]
       set -g HOSTNAME_PROMPT (hostname -s)
+    else
+      set -g HOSTNAME_PROMPT (hostname)
     end
   end
 end
