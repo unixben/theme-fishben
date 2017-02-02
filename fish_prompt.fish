@@ -23,6 +23,7 @@ set -g __fish_git_prompt_showdirtystate 'yes'
 set -g __fish_git_prompt_char_dirtystate '±'
 set -g __fish_git_prompt_char_cleanstate ''
 set -g branch_symbol ''
+set -g ref_symbol ''
 
 function parse_git_dirty
   set -l submodule_syntax
@@ -131,7 +132,7 @@ function prompt_git -d "Display the current git state"
     set ref (command git symbolic-ref HEAD 2> /dev/null)
     if [ $status -gt 0 ]
       set -l branch (command git show-ref --head -s --abbrev |head -n1 2> /dev/null)
-      set ref "➦ $branch "
+      set ref "$ref_symbol $branch "
     end
 
     set -l branch (echo $ref | sed  "s-refs/heads/-$branch_symbol -")
