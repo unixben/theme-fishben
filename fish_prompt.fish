@@ -88,12 +88,6 @@ end
 # Theme components
 # ===========================
 
-function prompt_virtual_env -d "Display Python virtual environment"
-  if test "$VIRTUAL_ENV"
-    prompt_segment white black (basename $VIRTUAL_ENV)
-  end
-end
-
 function prompt_user -d "Display current user if different from $default_user"
   if [ "$theme_display_user" = "yes" ]
     if [ "$USER" != "$default_user" -o -n "$SSH_CLIENT" ]
@@ -129,27 +123,6 @@ function prompt_dir -d "Display the current directory"
   prompt_segment blue white (prompt_pwd)
 end
 
-
-function prompt_hg -d "Display mercurial state"
-  set -l branch
-  set -l state
-  if command hg id >/dev/null 2>&1
-    if command hg prompt >/dev/null 2>&1
-      set branch (command hg prompt "{branch}")
-      set state (command hg prompt "{status}")
-
-      if [ "$state" = "!" ]
-        prompt_segment red white "$branch_symbol $branch ±"
-      else if [ "$state" = "?" ]
-          prompt_segment yellow black "$branch_symbol $branch ±"
-        else
-          prompt_segment green black "$branch_symbol $branch"
-      end
-    end
-  end
-end
-
-
 function prompt_git -d "Display the current git state"
   set -l ref
   set -l dirty
@@ -169,35 +142,6 @@ function prompt_git -d "Display the current git state"
     end
   end
 end
-
-
-function prompt_svn -d "Display the current svn state"
-  set -l ref
-  if command svn ls . >/dev/null 2>&1
-    set branch (svn_get_branch)
-
-    set revision (svn_get_revision)
-    prompt_segment green black "$branch_symbol $branch:$revision"
-  end
-end
-
-function svn_get_branch -d "get the current branch name"
-  svn info 2> /dev/null | awk -F/ \
-      '/^URL:/ { \
-        for (i=0; i<=NF; i++) { \
-          if ($i == "branches" || $i == "tags" ) { \
-            print $(i+1); \
-            break;\
-          }; \
-          if ($i == "trunk") { print $i; break; } \
-        } \
-      }'
-end
-
-function svn_get_revision -d "get the current revision number"
-  svn info 2> /dev/null | sed -n 's/Revision:\ //p'
-end
-
 
 function prompt_status -d "the symbols for a non zero exit status, root and background jobs"
     if [ $RETVAL -ne 0 ]
@@ -223,11 +167,8 @@ end
 function fish_prompt
   set -g RETVAL $status
   prompt_status
-  prompt_virtual_env
   prompt_user
   prompt_dir
-  type -q hg;  and prompt_hg
   type -q git; and prompt_git
-  type -q svn; and prompt_svn
   prompt_finish
 end
