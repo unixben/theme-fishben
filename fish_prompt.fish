@@ -1,5 +1,5 @@
-# name: Agnoster
-# agnoster's Theme - https://gist.github.com/3712874
+# name: FishBen
+# Derived from agnoster's theme - https://gist.github.com/3712874
 # A Powerline-inspired theme for FISH
 #
 # # README
@@ -7,13 +7,11 @@
 # In order for this theme to render correctly, you will need a
 # [Powerline-patched font](https://gist.github.com/1595572).
 
-## Set this options in your config.fish (if you want to :])
+## Possible options to set in your config.fish
 # set -g theme_display_user no
 # set -g theme_display_hostname no
-# set -g default_user your_normal_user
 # set -g theme_short_hostname no
-
-
+# set -g default_user your_normal_user
 
 set -g current_bg NONE
 set segment_separator \uE0B0
@@ -39,7 +37,6 @@ function parse_git_dirty
     end
   end
 end
-
 
 # ===========================
 # Segments functions
