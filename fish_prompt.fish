@@ -101,12 +101,12 @@ function prompt_user -d "Display current user if different from $default_user"
             else
                 set USER_PROMPT $USER
             end
-            prompt_segment black yellow $USER_PROMPT
+            prompt_segment ddd 666 $USER_PROMPT
         end
     else
         get_hostname
         if [ $HOSTNAME_PROMPT ]
-            prompt_segment black yellow $HOSTNAME_PROMPT
+            prompt_segment ddd 666 $HOSTNAME_PROMPT
         end
     end
 end
@@ -149,7 +149,7 @@ function prompt_git -d "Display the current git state"
 end
 
 function prompt_status -d "the symbols for a non zero exit status, root and background jobs"
-    if [ $RETVAL -ne 0 ]
+    if [ $status -ne 0 ]
         prompt_segment ccc brred ""
     end
 
@@ -170,10 +170,9 @@ end
 # ===========================
 
 function fish_prompt
-    set -g RETVAL $status
-    prompt_status
     prompt_user
     prompt_dir
     type -q git; and prompt_git
+    prompt_status
     prompt_finish
 end
