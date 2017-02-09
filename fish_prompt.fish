@@ -24,7 +24,7 @@ set -g branch_symbol ''
 set -g ref_symbol ''
 set -g superuser_symbol ''
 set -g nonzero_symbol ''
-set -g jobs_symbol ''
+set -g bgjobs_symbol ''
 
 function parse_git_dirty
     set -l submodule_syntax
@@ -149,7 +149,8 @@ function prompt_git -d "Display the current git state"
     end
 end
 
-function prompt_status -a last_status -d "the symbols for a non zero exit status, root and background jobs"
+function prompt_status -d "the symbols for a non zero exit status, root and background jobs"
+    set -l last_status $status
     if [ $last_status -gt 0 ]
         prompt_segment ccc brred $nonzero_symbol
     end
@@ -162,7 +163,7 @@ function prompt_status -a last_status -d "the symbols for a non zero exit status
 
     # Jobs display
     if [ (jobs -l | wc -l) -gt 0 ]
-        prompt_segment ccc blue $jobs_symbol
+        prompt_segment ccc blue $bgjobs_symbol
     end
 end
 
@@ -171,8 +172,6 @@ end
 # ===========================
 
 function fish_prompt
-    set -l last_status $status
-
     prompt_user
     prompt_dir
     type -q git; and prompt_git
