@@ -149,7 +149,7 @@ function prompt_git -d "Display the current git state"
     end
 end
 
-function prompt_status -S -a last_status -d "the symbols for a non zero exit status, root and background jobs"
+function prompt_status -a last_status -d "the symbols for a non zero exit status, root and background jobs"
     if [ $last_status -gt 0 ]
         prompt_segment ccc brred $nonzero_symbol
     end
