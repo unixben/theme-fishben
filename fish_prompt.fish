@@ -149,8 +149,8 @@ function prompt_git -d "Display the current git state"
     end
 end
 
-function prompt_status -S -a last_status -d "the symbols for a non zero exit status, root and background jobs"
-    if [ $last_status -gt 0 ]
+function prompt_status -d "the symbols for a non zero exit status, root and background jobs"
+    if [ $last_status -ne 0 ]
         prompt_segment ccc brred $nonzero_symbol
     end
 
@@ -171,7 +171,7 @@ end
 # ===========================
 
 function fish_prompt
-    set -l last_status $status
+    set -g last_status $status
 
     prompt_user
     prompt_dir
