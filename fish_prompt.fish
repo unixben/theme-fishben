@@ -22,18 +22,19 @@ set -g __fish_git_prompt_char_dirtystate '±'
 set -g __fish_git_prompt_char_cleanstate ''
 set -g branch_symbol ''
 set -g ref_symbol ''
+set -g superuser_symbol ''
+set -g nonzero_symbol ''
+set -g bgjobs_symbol ''
 
 function parse_git_dirty
     set -l submodule_syntax
     set submodule_syntax "--ignore-submodules=dirty"
     set git_dirty (command git status --porcelain $submodule_syntax  2> /dev/null)
 
-    if [ -n "$git_dirty" ]
-        if [ $__fish_git_prompt_showdirtystate = "yes" ]
+    if [ $__fish_git_prompt_showdirtystate = "yes" ]
+        if [ -n "$git_dirty" ]
             echo -n "$__fish_git_prompt_char_dirtystate"
-        end
-    else
-        if [ $__fish_git_prompt_showdirtystate = "yes" ]
+        else
             echo -n "$__fish_git_prompt_char_cleanstate"
         end
     end
@@ -151,18 +152,18 @@ end
 function prompt_status -d "the symbols for a non zero exit status, root and background jobs"
     set -l last_status $status
     if [ $last_status -gt 0 ]
-        prompt_segment ccc brred ""
+        prompt_segment ccc brred $nonzero_symbol
     end
 
     # if superuser (uid == 0)
     set -l uid (id -u $USER)
     if [ $uid -eq 0 ]
-        prompt_segment brred ccc ""
+        prompt_segment brred ccc $superuser_symbol
     end
 
     # Jobs display
     if [ (jobs -l | wc -l) -gt 0 ]
-        prompt_segment ccc blue ""
+        prompt_segment ccc blue $bgjobs_symbol
     end
 end
 
