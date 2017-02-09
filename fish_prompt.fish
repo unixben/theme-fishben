@@ -143,13 +143,14 @@ function prompt_git -d "Display the current git state"
         if [ "$dirty" != "" ]
             prompt_segment yellow black "$branch $dirty"
         else
-            prompt_segment green black "$branch $dirty"
+            prompt_segment green black "$branch"
         end
     end
 end
 
 function prompt_status -d "the symbols for a non zero exit status, root and background jobs"
-    if [ $status -ne 0 ]
+    set -l last_status $status
+    if [ $last_status -gt 0 ]
         prompt_segment ccc brred ""
     end
 
