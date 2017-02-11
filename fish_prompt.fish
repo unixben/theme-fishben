@@ -59,7 +59,7 @@ function prompt_segment -d "Function to draw a segment"
         set bg normal
     end
 
-    if [ "$current_bg" != 'NONE' -a "$argv[1]" != "$current_bg" ]
+    if [ "$current_bg" != 'NONE' -a "$argv[2]" != "$current_bg" ]
         set_color -b $bg
         set_color $current_bg
         echo -n "$segment_separator "
@@ -124,7 +124,7 @@ function get_hostname -d "Set current hostname to prompt variable $HOSTNAME_PROM
 end
 
 function prompt_dir -d "Display the current directory"
-    prompt_segment white 0087ff (prompt_pwd)
+    prompt_segment white blue (prompt_pwd)
 end
 
 function prompt_git -d "Display the current git state"
@@ -144,7 +144,7 @@ function prompt_git -d "Display the current git state"
         if [ "$dirty" != "" ]
             prompt_segment black yellow "$branch $dirty"
         else
-            prompt_segment ddd green "$branch"
+            prompt_segment white green "$branch"
         end
     end
 end
