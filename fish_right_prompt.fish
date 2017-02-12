@@ -1,34 +1,31 @@
-# right prompt for agnoster theme
-# shows vim mode status
+function cmd_duration -S -d 'Show command duration'
+    [ "$theme_display_cmd_duration" = "no" ]; and return
+    [ "$CMD_DURATION" -lt 100 ]; and return
 
-# Redefine fish_mode_prompt function as empty to hide fish-shell mode indicator
-function fish_mode_prompt
-end
-
-function prompt_vi_mode -d 'vi mode status indicator'
-    set -l right_segment_separator \uE0B2
-    switch $fish_bind_mode
-        case default
-            set_color green
-            echo "$right_segment_separator"
-            set_color -b green black
-            echo " N "
-        case insert
-            set_color blue
-            echo "$right_segment_separator"
-            set_color -b blue black
-            echo " I "
-        case visual
-            set_color red
-            echo "$right_segment_separator"
-            set_color -b red black
-            echo " V "
+    if [ "$CMD_DURATION" -lt 5000 ]
+        echo -ns $CMD_DURATION 'ms'
+    else if [ "$CMD_DURATION" -lt 60000 ]
+        math "scale=1;$CMD_DURATION/1000" | sed 's/\\.0$//'
+        echo -n 's'
+    else if [ "$CMD_DURATION" -lt 3600000 ]
+        set_color $fish_color_error
+        math "scale=1;$CMD_DURATION/60000" | sed 's/\\.0$//'
+        echo -n 'm'
+    else
+        set_color $fish_color_error
+        math "scale=2;$CMD_DURATION/3600000" | sed 's/\\.0$//'
+        echo -n 'h'
     end
+
+#    set_color $fish_color_normal
+#    set_color $fish_color_autosuggestion
+
+    [ "$theme_display_date" = "no" ] or echo -ns ' ' $right_segment_separator
 end
 
 function fish_right_prompt -d 'Prints right prompt'
-    if test "$fish_key_bindings" = "fish_vi_key_bindings"
-        prompt_vi_mode
-        set_color normal
-    end
+    set -l right_segment_separator \uE0B2
+
+    cmd_duration
+    set_color normal
 end

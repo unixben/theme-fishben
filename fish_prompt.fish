@@ -13,8 +13,7 @@
 set -g theme_display_user no
 set -g theme_display_hostname yes
 set -g theme_short_hostname yes
-set segment_separator \uE0B0
-set right_segment_separator \uE0B0
+set -g segment_separator \uE0B0
 
 # git status settings
 set -g __fish_git_prompt_showdirtystate 'yes'
