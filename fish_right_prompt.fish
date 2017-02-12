@@ -1,7 +1,7 @@
 function cmd_duration -S -d 'Show command duration'
     [ "$CMD_DURATION" -lt 100 ]; and return
 
-    if [ "$CMD_DURATION" -lt 5000 ]
+    if [ "$CMD_DURATION" -lt 1000 ]
         set_color -b normal
         set_color green
         echo -ns $right_segment_separator
