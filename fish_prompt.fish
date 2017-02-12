@@ -87,7 +87,6 @@ function prompt_segment -d "Function to draw a segment"
 
     set current_bg $argv[2]
     [ -n "$argv[3]" ]; echo -n -s $argv[3] " "
-    end
 end
 
 # close out the prompt and set back to normal colours for user input
