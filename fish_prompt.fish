@@ -116,7 +116,6 @@ function prompt_user -d "Display current user if different from $default_user"
     else
         get_hostname
         [ $HOSTNAME_PROMPT ]; prompt_segment $theme_user_fg $theme_user_bg $HOSTNAME_PROMPT
-        end
     end
 end
 
