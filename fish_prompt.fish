@@ -55,7 +55,6 @@ function parse_git_dirty
     set git_dirty (command git status --porcelain $submodule_syntax  2> /dev/null)
 
     [ $__fish_git_prompt_showdirtystate = "yes" -a -n "$git_dirty" ]; echo -n "$__fish_git_prompt_char_dirtystate"
-    end
 end
 
 # build up the different prompt segments
