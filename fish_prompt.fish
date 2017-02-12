@@ -151,7 +151,7 @@ function prompt_status -d "Show symbols for a non zero exit status, superuser an
 
     # If there are jobs running
     if [ (jobs -l | wc -l) -gt 0 ]
-        prompt_segment $theme_status_jobs_fg $theme_status_jobs_fg $jobs_symbol
+        prompt_segment $theme_status_jobs_fg $theme_status_jobs_bg $jobs_symbol
     end
 end
 
