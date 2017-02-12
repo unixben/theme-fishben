@@ -20,7 +20,7 @@ function cmd_duration -S -d 'Show command duration'
 #    set_color $fish_color_normal
 #    set_color $fish_color_autosuggestion
 
-    [ "$theme_display_date" = "no" ] or echo -ns ' ' $right_segment_separator
+    echo -ns ' ' $right_segment_separator
 end
 
 function fish_right_prompt -d 'Prints right prompt'
