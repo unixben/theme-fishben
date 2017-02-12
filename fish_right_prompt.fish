@@ -20,7 +20,7 @@ function cmd_duration -S -d 'Show command duration'
     else if [ "$CMD_DURATION" -lt 3600000 ]
         set_color -b normal
         set_color yellow
-        echo -ns $right_segment_separator ' '
+        echo -ns $right_segment_separator
         set_color -b yellow
         set_color black
         echo -ns ' '
@@ -29,7 +29,7 @@ function cmd_duration -S -d 'Show command duration'
     else
         set_color -b normal
         set_color brred
-        echo -ns $right_segment_separator ' '
+        echo -ns $right_segment_separator
         set_color -b brred
         set_color ccc
         echo -ns ' '
