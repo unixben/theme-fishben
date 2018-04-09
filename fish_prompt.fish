@@ -30,10 +30,10 @@ set -g theme_git_branch_fg white
 set -g theme_git_branch_bg green
 set -g theme_git_dirty_fg black
 set -g theme_git_dirty_bg yellow
-set -g theme_user_fg 666
-set -g theme_user_bg ddd
-set -g theme_dir_fg white
-set -g theme_dir_bg blue
+set -g theme_user_fg 286593
+set -g theme_user_bg 82a2bd
+set -g theme_dir_fg f1f1f1
+set -g theme_dir_bg 555
 set -g theme_status_nonzero_fg brred
 set -g theme_status_nonzero_bg ccc
 set -g theme_status_superuser_fg ccc
