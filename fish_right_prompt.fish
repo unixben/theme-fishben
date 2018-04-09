@@ -6,14 +6,14 @@ function cmd_duration -S -d 'Show command duration'
         set_color green
         echo -ns $right_segment_separator
         set_color -b green
-        set_color white
+        set_color black
         echo -ns ' ' $CMD_DURATION 'ms'
     else if [ "$CMD_DURATION" -lt 60000 ]
         set_color -b normal
         set_color green
         echo -ns $right_segment_separator
         set_color -b green
-        set_color white
+        set_color black
         echo -ns ' '
         math "scale=1;$CMD_DURATION/1000" | sed 's/\\.0$//'
         echo -n 's'
