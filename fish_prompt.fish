@@ -26,7 +26,7 @@ set -g nonzero_symbol ''
 set -g jobs_symbol ''
 
 # colours can be named or hex
-set -g theme_git_branch_fg white
+set -g theme_git_branch_fg 038052
 set -g theme_git_branch_bg green
 set -g theme_git_dirty_fg black
 set -g theme_git_dirty_bg yellow
