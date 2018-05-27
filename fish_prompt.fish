@@ -19,11 +19,11 @@ set -g segment_separator \uE0B0
 set -g __fish_git_prompt_showdirtystate 'yes'
 set -g __fish_git_prompt_char_dirtystate '±'
 set -g __fish_git_prompt_char_cleanstate ''
-set -g branch_symbol ''
-set -g ref_symbol ''
-set -g superuser_symbol ''
-set -g nonzero_symbol ''
-set -g jobs_symbol ''
+set -g branch_symbol '⇌'
+set -g ref_symbol '⇀'
+set -g superuser_symbol '$'
+set -g nonzero_symbol '!'
+set -g jobs_symbol '%'
 
 # colours can be named or hex
 set -g theme_git_branch_fg 038052
