@@ -11,7 +11,7 @@
 #
 # general settings
 set -g theme_display_user no
-set -g theme_display_hostname yes
+set -g theme_display_hostname no
 set -g theme_short_hostname yes
 set -g segment_separator \uE0B0
 
@@ -26,12 +26,12 @@ set -g nonzero_symbol '!'
 set -g jobs_symbol '%'
 
 # colours can be named or hex
-set -g theme_git_branch_fg 038052
+set -g theme_git_branch_fg white
 set -g theme_git_branch_bg green
 set -g theme_git_dirty_fg black
 set -g theme_git_dirty_bg yellow
-set -g theme_user_fg 286593
-set -g theme_user_bg 82a2bd
+set -g theme_user_fg black
+set -g theme_user_bg grey
 set -g theme_dir_fg f1f1f1
 set -g theme_dir_bg 555
 set -g theme_status_nonzero_fg brred
